@@ -1,22 +1,34 @@
-const program = require('commander');
-// const { Command } = require('commander');
-// const program = new Command();
-program
-    .option('-x, --xxx', 'What is the x')
-program
-    .command('add')
-    .description('add a task')
-    .action((...args) => {
-        const words = args.slice(0, -1).join(' ');
-        console.log(words);
-    });
-program
-    .command('clear')
-    .description('clear all tasks')
-    .action((...args) => {
-        console.log('this is clear');
-    });
+const homedir = require('os').homedir();
+const home = process.env.HOME || homedir;
+const p = require('path');
+const fs = require('fs');
+const dbPath = p.join(home, '.todo')
 
-program.parse(process.argv);
-
-console.log(program.xxx)
+module.exports.add = (title) => {
+    // 读取之前的task
+    fs.readFile(dbPath, {flag: 'a+'}, (error, data)=>{
+        if(error) {
+            console.log(error)
+        } else {
+            let list;
+            try {
+                list = JSON.parse(data.toString());
+            } catch (e) {
+                list = []
+            }
+            const task = {
+                title: title,
+                done: false
+            };
+            list.push(task);
+            const string = JSON.stringify(list);
+            fs.writeFile(dbPath, string+'\n', (e)=>{
+                if(e) {
+                    console.log(e)
+                }
+            })
+        }
+    })
+    // 往里面添加一个 title task
+    // 存储任务到文件
+}

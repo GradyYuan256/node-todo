@@ -17,7 +17,7 @@ const db = {
                 }
                 resolve(list);
             })
-        })
+        });
 
     },
     write(list, path = dbPath) {
@@ -27,7 +27,7 @@ const db = {
                 if(error) { return reject(error); }
                 resolve();
             })
-        })
+        });
 
     }
 }

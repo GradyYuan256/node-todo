@@ -3,9 +3,9 @@ const inquirer = require('inquirer');
 
 module.exports.add = async (title) => {
     // 读取之前的task
-    const list = await db.read()
+    const list = await db.read();
     // 往里面添加一个 title task
-    list.push({title, done: false})
+    list.push({title, done: false});
     // 存储任务到文件
     await db.write(list);
 }
@@ -95,7 +95,7 @@ function printTasks(list) {
 }
 
 module.exports.showAll = async () => {
-    console.log('show all')
+    // console.log('show all')
     // 读取之前的任务
     const list = await db.read();
     // 打印之前的任务

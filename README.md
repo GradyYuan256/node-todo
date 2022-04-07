@@ -10,7 +10,7 @@
 - 清空所有任务
 
 ## 安装
-```
+```perl
 >> yarn global add node-todo-t
 >> npm install -g node-todo-t 
 ```
@@ -18,15 +18,15 @@
 ## 使用
 
 **展示任务列表**
-```
+```perl
 >> t
 ```
 **新建任务**
-```
+```perl
 >> t add reading
-```
+```perl
 **清空所有任务**
-```
+```perl
 >> t clear
 ```
 
